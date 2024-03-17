@@ -1,1 +1,1 @@
-# ECE 539 Breast cancer diagnosis classifier
+# ECE 539 Breast cancer diagnosis classifiers
