@@ -23,7 +23,7 @@ X_test_scaled = scaler.transform(X_test)
 models=["randomForest", "SVM", "XGBoost", "logReg", "sNN", "dNN"]
 functions= {"randomForest":randomForest, "SVM":SVM, "XGBoost":XGBoost, "logReg":logReg, "sNN":sNN, "dNN":dNN}
 
-fig, axes = plt.subplots(2, 3, figsize=(16, 8))
+fig, axes = plt.subplots(2, 3, figsize=(8, 4))
 
 accuracies = []
 
@@ -42,7 +42,7 @@ for i,modelName in enumerate(models):
 
     # Plotting confusion matrix
     ax = axes[i % 2, i // 2]
-    ax.set_title(f"Confusion Matrix for {modelName}")
+    ax.set_title(f"{modelName}")
     plt.sca(ax)
     plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues, )
     plt.colorbar()
@@ -54,7 +54,7 @@ for i,modelName in enumerate(models):
 
 plt.tight_layout()
 
-fig2, ax = plt.subplots(1,1)
+fig2, ax = plt.subplots(1,1,figsize=(6,4))
 ax.bar(np.arange(len(models)),accuracies)
 ax.set_xticks(np.arange(len(models)))
 ax.set_xticklabels(models)
@@ -64,3 +64,9 @@ ax.grid('True')
 ax.set_ylabel('Accuracy')
 ax.set_title('Accuracy across models')
 plt.show()
+fig.savefig('figures/confusionMatrices.png',dpi=300)
+fig2.savefig('figures/accuracyModels.png',dpi=300)
+
+print(accuracies)
+for i,modelName in enumerate(models):
+    print(modelName, 'accuracy: ',accuracies[i])
